@@ -2,7 +2,7 @@ const passport = require('passport');
 const User = require('../../api/users/users.model');
 
 const loginStrategy = require('./login.Strategy');
-const registerStrategy = require('./register.Stategy');
+const registerStrategy = require('./register.Strategy');
 
 passport.serializeUser((user, done) => {
     return done(null, user._id);

@@ -8,7 +8,7 @@ const saltRounds = 10;
 
 const registerStrategy = new LocalStrategy(
     {
-        usernameField: 'email', ///????????????????
+        usernameField: 'email', 
         passwordField: 'password',
         passReqToCallback: true //Para habilitar poder recuperar mas campos del modelo
     },
