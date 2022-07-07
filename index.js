@@ -9,6 +9,7 @@ const { connectDb } = require('./src/utils/database/database');
 require('./src/utils/auth/index');
 const MoviesRoutes = require('./src/api/movies/movies.routes');
 const UserRoutes = require('./src/api/users/users.routes');
+const { isAdmin } = require('./src/utils/middlewares/auth.middleware');
 
 
 dotenv.config();
@@ -66,7 +67,7 @@ app.use(express.urlencoded({
 
 //Rutas
 app.use('/users', UserRoutes);
-app.use('/movies', MoviesRoutes);
+app.use('/movies', [isAdmin], MoviesRoutes); 
 
 //Gestion de errores
 
