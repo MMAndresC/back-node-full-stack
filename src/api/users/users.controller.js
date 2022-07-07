@@ -92,11 +92,9 @@ const deleteUser = async (req, res, next) => {
     }
 }
 
-const getCheckSession = (req, res, next) => {
+const getCheckSession = async (req, res, next) => {
     if (!req.user) {
-        const err = new Error('User not found');
-        err.status = 401;
-        return next(err);
+        return res.status(401).json('User not found');
     }
     let registeredUser = req.user;
     registeredUser.password = null;

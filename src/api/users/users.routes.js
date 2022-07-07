@@ -7,7 +7,8 @@ const UserRoutes = express.Router();
 UserRoutes.post('/register', postRegister);
 UserRoutes.post('/login', postLogin);
 UserRoutes.post('/logout', postLogout);
-UserRoutes.get('/gestion', [isAuthenticated], getCheckSession);
+UserRoutes.get('/session', getCheckSession);
+//UserRoutes.get('/gestion', [isAuthenticated],);
 UserRoutes.put('/gestion/:id', putInfoUser);
 UserRoutes.delete('/gestion/:id', deleteUser);
 

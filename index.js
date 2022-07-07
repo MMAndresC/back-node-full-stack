@@ -7,6 +7,7 @@ const passport = require('passport');
 
 const { connectDb } = require('./src/utils/database/database');
 require('./src/utils/auth/index');
+const MoviesRoutes = require('./src/api/movies/movies.routes');
 const UserRoutes = require('./src/api/users/users.routes');
 
 
@@ -65,6 +66,7 @@ app.use(express.urlencoded({
 
 //Rutas
 app.use('/users', UserRoutes);
+app.use('/movies', MoviesRoutes);
 
 //Gestion de errores
 
