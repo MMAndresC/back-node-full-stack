@@ -42,9 +42,19 @@ const deleteMovie = async (req, res, next) => {
     }
 }
 
+const getMoviesAdmin = async (req, res, next) => {
+    try{
+        const allMovies = await Movies.find();
+        return res.status(200).json(allMovies);
+    }catch(err){
+        return next(err);
+    }
+}
+
 
 module.exports = {
     postNewMovie,
     putEditMovie,
-    deleteMovie
+    deleteMovie,
+    getMoviesAdmin,
 }
