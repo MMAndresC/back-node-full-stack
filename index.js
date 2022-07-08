@@ -70,7 +70,7 @@ app.use(express.urlencoded({
 
 //Rutas
 app.use('/users', UserRoutes);
-app.use('/movies', [isAdmin], MoviesRoutes); 
+app.use('/movies', MoviesRoutes); 
 app.use('/screenings', [isAdmin], ScreeningsRoutes);
 
 //Gestion de errores

@@ -8,7 +8,7 @@ const isAuthenticated = (req, res, next) => {
 }
 
 const isAdmin = (req, res, next) => {
-    if(req.isAuthenticated){
+    if(req.isAuthenticated()){
         if(req.user.role === 'admin'){
             return next();
         }
