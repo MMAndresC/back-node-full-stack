@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../../api/users/users.model');
-const { validateEmail, validatePassword } = require('../validators/validators');
+const { validateEmail, validatePassword, validatePhone } = require('../validators/validators');
 
 const saltRounds = 10;
 
@@ -27,6 +27,13 @@ const registerStrategy = new LocalStrategy(
             const formatPassword = validatePassword(password);
             if(!formatEmail || !formatPassword){
                 const err = new Error('Failed attempt to register, wrong format email or password');
+                err.status = 400;
+                return done(err, null);
+            }
+            
+            const formatPhone = validatePhone(req.body.phone);
+            if(!formatPhone){
+                const err = new Error('Phone wrong format');
                 err.status = 400;
                 return done(err, null);
             }

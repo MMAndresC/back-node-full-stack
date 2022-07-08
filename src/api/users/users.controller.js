@@ -1,6 +1,9 @@
+const bcrypt = require('bcrypt');
 const passport = require('passport');
+
 const User = require('./users.model');
 
+const saltRounds = 10;
 
 const postRegister = (req, res, next) => {
 
@@ -60,11 +63,17 @@ const postLogout = async (req, res, next) => {
 };
 
 const putInfoUser = async (req, res, next) => {
+
     try {
         const { id } = req.params;
         const newInfo = new User(req.body);
         newInfo._id = id;
-        const updatedInfo = User.findByIdAndUpdate(id, newInfo);
+        newInfo.role = 'user';
+        if(newInfo.password){
+            const hash = await bcrypt.hash(newInfo.password, saltRounds);
+            newInfo.password = hash;
+        }
+        const updatedInfo = await User.findByIdAndUpdate(id, newInfo);
         if (!updatedInfo) {
             const err = new Error('User not found');
             err.status = 404;

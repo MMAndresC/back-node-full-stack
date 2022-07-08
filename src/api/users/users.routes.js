@@ -9,8 +9,8 @@ UserRoutes.post('/login', postLogin);
 UserRoutes.post('/logout', postLogout);
 UserRoutes.get('/session', getCheckSession);
 //UserRoutes.get('/gestion', [isAuthenticated],);
-UserRoutes.put('/gestion/:id', putInfoUser);
-UserRoutes.delete('/gestion/:id', deleteUser);
+UserRoutes.put('/gestion/:id', putInfoUser); //,[isAuthenticated]
+UserRoutes.delete('/gestion/:id',[isAuthenticated], deleteUser );
 
 module.exports = UserRoutes;
 

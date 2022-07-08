@@ -27,8 +27,24 @@ const putEditMovie = async (req, res, next) => {
     }
 }
 
+const deleteMovie = async (req, res, next) => {
+    try{
+        const { id } = req.params;
+        const delMovieDb = await Movies.findByIdAndDelete(id);
+        if(!delMovieDb){
+            const err = new Error('Movie not found');
+            err.status = 404;
+            return next(err);
+        }
+        return res.status(200).json(delMovieDb);
+    }catch(err) {
+        return next(err);
+    }
+}
+
 
 module.exports = {
     postNewMovie,
-    putEditMovie
+    putEditMovie,
+    deleteMovie
 }

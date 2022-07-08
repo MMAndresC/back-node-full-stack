@@ -7,8 +7,11 @@ const passport = require('passport');
 
 const { connectDb } = require('./src/utils/database/database');
 require('./src/utils/auth/index');
+
 const MoviesRoutes = require('./src/api/movies/movies.routes');
+const ScreeningsRoutes = require('./src/api/screenings/screenings.routes');
 const UserRoutes = require('./src/api/users/users.routes');
+
 const { isAdmin } = require('./src/utils/middlewares/auth.middleware');
 
 
@@ -68,6 +71,7 @@ app.use(express.urlencoded({
 //Rutas
 app.use('/users', UserRoutes);
 app.use('/movies', [isAdmin], MoviesRoutes); 
+app.use('/screenings', [isAdmin], ScreeningsRoutes);
 
 //Gestion de errores
 
