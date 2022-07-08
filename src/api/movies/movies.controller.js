@@ -51,10 +51,22 @@ const getMoviesAdmin = async (req, res, next) => {
     }
 }
 
+const getPremieres = async (req, res, next) => {
+    
+    try{
+        const premieres = await Movies.find({isActive: true});
+        console.log(premieres);
+        return res.status(200).json(premieres);
+    }catch(err){
+        return next(err);
+    }
+}
+
 
 module.exports = {
     postNewMovie,
     putEditMovie,
     deleteMovie,
     getMoviesAdmin,
+    getPremieres,
 }
