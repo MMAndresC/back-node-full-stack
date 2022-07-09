@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-
-const screeningsSchema = new mongoose.Schema(
+const screeningsSchema = new Schema(
     {
-        idMovie: { type: mongoose.Types.ObjectId, ref: 'Movies', required: true },
-        idHall: { type: mongoose.Types.ObjectId, ref: 'CinemaHalls' , required: true },
-        date: { type:Date, required: true },
-        hour: { type: String, required: true },
+        idHall: { type: Schema.Types.ObjectId, ref: 'CinemaHalls' , required: true },
+        idMovie: { type: Schema.Types.ObjectId, required: true},
+        movie: { type: String, required: true },
+        date: { type:String, required: true },
+        hour: { type: [String], required: true },
         takenSeat: { type: [Number], required: true}
     },
     {
@@ -14,6 +15,6 @@ const screeningsSchema = new mongoose.Schema(
     }
 );
 
-const Screenings = new mongoose.model('Screenings', screeningsSchema);
+const Screenings = mongoose.model('Screenings', screeningsSchema);
 
 module.exports = Screenings;

@@ -11,7 +11,7 @@ require('./src/utils/auth/index');
 const MoviesRoutes = require('./src/api/movies/movies.routes');
 const ScreeningsRoutes = require('./src/api/screenings/screenings.routes');
 const UserRoutes = require('./src/api/users/users.routes');
-
+const CinemaHallsRoutes = require('./src/api/cinemaHalls/cinemaHalls.routes');
 const { isAdmin } = require('./src/utils/middlewares/auth.middleware');
 
 
@@ -71,7 +71,8 @@ app.use(express.urlencoded({
 //Rutas
 app.use('/users', UserRoutes);
 app.use('/movies', MoviesRoutes); 
-app.use('/screenings', [isAdmin], ScreeningsRoutes);
+app.use('/screenings', ScreeningsRoutes);
+app.use('/halls', [isAdmin], CinemaHallsRoutes);
 
 //Gestion de errores
 
