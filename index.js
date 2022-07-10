@@ -8,11 +8,13 @@ const passport = require('passport');
 const { connectDb } = require('./src/utils/database/database');
 require('./src/utils/auth/index');
 
+const CinemaHallsRoutes = require('./src/api/cinemaHalls/cinemaHalls.routes');
 const MoviesRoutes = require('./src/api/movies/movies.routes');
 const ScreeningsRoutes = require('./src/api/screenings/screenings.routes');
+const TicketsRoutes = require('./src/api/tickets/tickets.routes');
 const UserRoutes = require('./src/api/users/users.routes');
-const CinemaHallsRoutes = require('./src/api/cinemaHalls/cinemaHalls.routes');
-const { isAdmin } = require('./src/utils/middlewares/auth.middleware');
+
+const { isAdmin, isAuthenticated } = require('./src/utils/middlewares/auth.middleware');
 
 
 dotenv.config();
@@ -73,6 +75,7 @@ app.use('/users', UserRoutes);
 app.use('/movies', MoviesRoutes); 
 app.use('/screenings', ScreeningsRoutes);
 app.use('/halls', [isAdmin], CinemaHallsRoutes);
+app.use('/tickets', [isAuthenticated], TicketsRoutes);
 
 //Gestion de errores
 
