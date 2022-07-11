@@ -7,8 +7,8 @@ const screeningsSchema = new Schema(
         idMovie: { type: Schema.Types.ObjectId, required: true},
         movie: { type: String, required: true },
         date: { type:String, required: true },
-        hour: { type: [String], required: true },
-        takenSeat: { type: [Number], required: true}
+        hour: { type: String, required: true },
+        takenSeat: { type: [Number] }
     },
     {
         timestamps: true

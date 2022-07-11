@@ -9,6 +9,7 @@ const ticketsSchema = new mongoose.Schema(
         date: { type: String, required: true },
         hour: { type: String, required: true },
         mySeats: { type:[Number], required: true },
+        price: { type:String, required: true },
         qr: { type: String },
     },
     {
