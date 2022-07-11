@@ -1,17 +1,29 @@
 const Screenings = require('./screenings.model');
 
 const putEditScreening = async (req, res, next) => {
+    
     try {
         const {id} = req.params;
         const editedScreening = new Screenings(req.body);
         editedScreening._id = id;
         const editScreeningDb = await Screenings.findByIdAndUpdate(id, editedScreening);
+        console.log('back',editedScreening);
         if(!editScreeningDb){
             const err = new Error('Screening not found');
             err.status = 404;
             return next(err);
         }
         return res.status(200).json(editScreeningDb);
+    }catch(err){
+        return next(err);
+    }
+}
+
+const updateSeatsById =  async (req, res, next) => {
+    try{
+        const { id } = req.params;
+        const updated = await Screenings.updateOne({_id: id},{$push:{takenSeat:req.body}});
+        return res.status(201).json(updated);
     }catch(err){
         return next(err);
     }
@@ -42,4 +54,5 @@ module.exports = {
     postNewScreening,
     getScreeningByMovie,
     putEditScreening,
+    updateSeatsById
 }

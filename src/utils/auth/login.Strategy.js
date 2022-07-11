@@ -17,13 +17,15 @@ const loginStrategy = new LocalStrategy(
             //validar formato del mail y contraseña
             const formatEmail = validateEmail(email);
             const formatPassword = validatePassword(password);
+        
             if (!formatEmail || !formatPassword) {
                 const err = new Error('Error!, wrong format email or password');
                 err.status = 400;
                 return done(err);
             }
 
-            const user = await User.findOne({ email: email.toLowerCase() });
+            const user = await User.findOne({ email: email });
+            
             //Si no existe el usuario 
             if (!user) {
                 const err = new Error('Failed to login, error in mail or password');
