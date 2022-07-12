@@ -5,6 +5,6 @@ const { postNewTicket, getTicketsByClient } = require('./tickets.controller');
 const TicketsRoutes = express.Router();
 
 TicketsRoutes.post('/add', postNewTicket);
-TicketsRoutes.get('/:id', getTicketsByClient);
+TicketsRoutes.get('/:email', getTicketsByClient);
 
 module.exports = TicketsRoutes;

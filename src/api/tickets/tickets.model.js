@@ -10,7 +10,7 @@ const ticketsSchema = new mongoose.Schema(
         hour: { type: String, required: true },
         mySeats: { type:[Number], required: true },
         price: { type:String, required: true },
-        qr: { type: String },
+        //qr: { type: String },
     },
     {
         timestamps: true

@@ -8,7 +8,7 @@ UserRoutes.post('/register', postRegister);
 UserRoutes.post('/login', postLogin);
 UserRoutes.post('/logout', postLogout);
 UserRoutes.get('/session', getCheckSession);
-UserRoutes.put('/gestion/:id',[isAdmin], putInfoUser); 
+UserRoutes.put('/gestion/:id',[isAuthenticated], putInfoUser); 
 UserRoutes.delete('/gestion/:id',[isAdmin], deleteUser );
 
 module.exports = UserRoutes;

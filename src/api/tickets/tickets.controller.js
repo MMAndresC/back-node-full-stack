@@ -13,8 +13,9 @@ const postNewTicket = async (req, res, next) => {
 
 const getTicketsByClient = async (req, res, next) => {
     try{
-        const { id } = req.params;
-        const tickets = await Tickets.find({email: id}).sort({date:1});
+        const { email } = req.params;
+        const tickets = await Tickets.find({clientEmail: email}).sort({date:-1});
+        
         return res.status(201).json(tickets);
     }catch(err){
         return next(err);
