@@ -54,7 +54,7 @@ const getScreeningByMovie = async (req, res, next) => {
         today = `${day}/${month}/${year}`;
     
         const { id } = req.params;
-        const screeningsMovie = await Screenings.find({idMovie: id, date: { $gt: today }}).populate('idHall').sort({date:1});
+        const screeningsMovie = await Screenings.find({idMovie: id, date: { $gt: today }}).populate('idHall').sort({date:1, hour:1});
                                                     
         return res.status(201).json(screeningsMovie);
     }catch(err){
