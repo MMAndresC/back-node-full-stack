@@ -10,6 +10,7 @@ require('./src/utils/auth/index');
 
 const CinemaHallsRoutes = require('./src/api/cinemaHalls/cinemaHalls.routes');
 const MoviesRoutes = require('./src/api/movies/movies.routes');
+const PaymentRoutes = require('./src/api/payment/payment.routes');
 const ScreeningsRoutes = require('./src/api/screenings/screenings.routes');
 const TicketsRoutes = require('./src/api/tickets/tickets.routes');
 const UserRoutes = require('./src/api/users/users.routes');
@@ -57,6 +58,8 @@ app.use( session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.json()); ////Lo del STRIPE
+
 //Limitar el tamaño de las peticiones, para el metodo POST
 app.use(express.json({
     limit: '5mb'
@@ -76,6 +79,7 @@ app.use('/movies', MoviesRoutes);
 app.use('/screenings', ScreeningsRoutes);
 app.use('/halls', [isAdmin], CinemaHallsRoutes);
 app.use('/tickets', [isAuthenticated], TicketsRoutes);
+app.use('/checkout', PaymentRoutes);
 
 //Gestion de errores
 
